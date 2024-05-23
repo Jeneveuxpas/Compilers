@@ -1,0 +1,71 @@
+First:
+!:! 
+!=:!= 
+&&:&& 
+(:( 
+*:* 
++:+ 
+,:, 
+-:- 
+/:/ 
+0:0 
+1:1 
+=:= 
+==:== 
+[:[ 
+__int128:__int128 
+a:a 
+basic:__int128 bool char double float int long string void 
+block:{ 
+bool:bool 
+bool':! ( - 0 1 __int128 a bool char double false float int long main string true x 
+bool''':epsilon || 
+break:break 
+char:char 
+decl:__int128 bool char double float int long string 
+decl':__int128 bool char double epsilon float int long string 
+decls:__int128 bool char double epsilon float int long string 
+decls':__int128 bool char double epsilon float int long string 
+do:do 
+double:double 
+epsilon:epsilon 
+equality:! ( - 0 1 __int128 a bool char double false float int long main string true x 
+equality':!= == epsilon 
+expr:! ( - 0 1 __int128 a bool char double false float int long main string true x 
+expr':+ - epsilon 
+expr'':! ( - 0 1 __int128 a bool char double epsilon false float int long main string true x 
+factor:( 0 1 __int128 a bool char double false float int long main string true x 
+false:false 
+float:float 
+id:a main x 
+if:if 
+int:int 
+join:! ( - 0 1 __int128 a bool char double false float int long main string true x 
+join':&& epsilon 
+loc:__int128 a bool char double float int long main string x 
+loc':[ epsilon 
+loc'':__int128 bool char double epsilon float int long string 
+long:long 
+main:main 
+next:, = [ epsilon 
+num:0 1 
+program:__int128 bool char double float int long string void 
+program':__int128 bool char double epsilon float int long string void 
+real:
+rel:! ( - 0 1 __int128 a bool char double false float int long main string true x 
+return:return 
+stmt:__int128 a bool break char do double float if int long main return string while x { 
+stmts:__int128 a bool break char do double epsilon float if int long main return string while x { 
+stmts':__int128 a bool break char do double epsilon float if int long main return string while x { 
+string:string 
+string':
+term:! ( - 0 1 __int128 a bool char double false float int long main string true x 
+term':* / epsilon 
+true:true 
+type:__int128 bool char double float int long string 
+unary:! ( - 0 1 __int128 a bool char double false float int long main string true x 
+void:void 
+while:while 
+x:x 
+{:{ 
+||:|| 

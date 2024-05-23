@@ -1,0 +1,12 @@
+//该测试数据测试程序能否正确处理函数体，以及函数的返回语句。
+bool check(int x)
+{
+    if(x>=0)
+        return 1;
+    else
+        return 0; 
+}
+int main(){
+
+    return 0;
+}

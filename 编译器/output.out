@@ -1,0 +1,15 @@
+<Keyword,int>
+<identifier,main>
+<Delimiter,(>
+<Delimiter,)>
+<Delimiter,{>
+<Keyword,int>
+<identifier,a>
+<Operator,=>
+<Number,0>
+<Keyword,int>
+<identifier,x>
+<Operator,=>
+<Number,1>
+<Delimiter,;>
+<Delimiter,}>

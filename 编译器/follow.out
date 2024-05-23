@@ -1,0 +1,43 @@
+Follow:
+(:) 
+):; 
+basic:a main x 
+block:$ __int128 a bool break char do double else float if int long main return string void while x { } 
+bool':) 
+bool''':) 
+break:; 
+decl:__int128 a bool break char do double float if int long main return string while x { } 
+decl':) 
+decls:__int128 a bool break char do double float if int long main return string while x { } 
+decls':__int128 a bool break char do double float if int long main return string while x { } 
+equality:&& ) || 
+equality':&& ) || 
+expr:!= && ) , ; < <= = == > >= [ || 
+expr':!= && ) , ; < <= = == > >= [ || 
+expr'':; 
+factor:!= && ) * + , - / ; < <= = == > >= [ || 
+id:!= && ( ) * + , - / ; < <= = == > >= [ ] || 
+if:( 
+join:) || 
+join':) || 
+loc:!= && ) * + , - / ; < <= = == > >= [ || 
+loc':!= && ) * + , - / ; < <= = == > >= [ || 
+loc'':a main x 
+long:long 
+next:) ; 
+num:!= && ) * + , - / ; < <= = == > >= [ ] || 
+program:$ 
+program':$ 
+real:!= && ) * + , - / ; < <= = == > >= [ || 
+rel:!= && ) == || 
+return:; 
+stmt:__int128 a bool break char do double else float if int long main return string while x { } 
+stmts:} 
+stmts':} 
+string':!= && ) * + , - / ; < <= = == > >= [ || 
+term:!= && ) + , - ; < <= = == > >= [ || 
+term':!= && ) + , - ; < <= = == > >= [ || 
+type:a main x 
+unary:!= && ) * + , - / ; < <= = == > >= [ || 
+while:( 
+{:} 

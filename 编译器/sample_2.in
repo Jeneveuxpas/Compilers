@@ -1,0 +1,15 @@
+//该测试数据测试程序能否正确处理变量的定义语句，以及一些简单的赋值、运算操作语句。
+int main()
+{
+    int a = 4, e[10];
+    float b;
+    char c='a';
+    string s = "hello world!";
+    bool d;
+    int i = 1;
+    float f = 6.6;
+    a = 1;
+    i = i + f;
+    d = true;
+    return 0;
+}

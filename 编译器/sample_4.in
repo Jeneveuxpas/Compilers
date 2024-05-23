@@ -1,0 +1,15 @@
+\\该测试数据测试程序能否正确处理 if 语句与 if-else 语句的嵌套，简单的 if 判断条件，以及能否在嵌套中进行赋值操作。
+int main()
+{
+    int a = 5;
+    bool b;
+    if(a > 3){
+        if(a < 1){
+            b = true;
+        }
+        if(a > 3 && a < 3){
+            b = false;
+        }
+    }
+    return 0;
+}

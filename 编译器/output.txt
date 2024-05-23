@@ -1,0 +1,19 @@
+$ 	移入
+$ int 	归约/basic->int 
+$ basic 	移入
+$ basic main 	归约/id->main 
+$ basic id 	移入
+$ basic id ( 	归约/decl'->epsilon 
+$ basic id ( decl' 	移入
+$ basic id ( decl' ) 	移入
+$ basic id ( decl' ) { 	移入
+$ basic id ( decl' ) { int 	归约/type->int 
+$ basic id ( decl' ) { type 	移入
+$ basic id ( decl' ) { type a 	归约/id->a 
+$ basic id ( decl' ) { type id 	移入
+$ basic id ( decl' ) { type id = 	移入
+Error in Line : 4
+invalid syntax in expression
+int a = 0
+         ^^^
+need: ;

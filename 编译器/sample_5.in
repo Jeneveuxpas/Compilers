@@ -1,0 +1,24 @@
+//该测试数据测试程序能否正确处理局部变量的定义语句，break
+//语句是否能够正常退出 while 循环，以及逻辑运算关系语句和赋值语句的返回值
+//是否正确。
+int main()
+{
+ int cnt = 0;
+ bool flag = false;
+ int a = 2;
+while(true){
+ cnt=cnt+1;
+ bool x = true;
+ if(!x){
+ break;
+ }
+ if(cnt == 100){
+ x = false;
+ }
+ if(cnt == 200 && a == 1){
+ flag = true;
+ break;
+ }
+ }
+ return 0;
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语法分析器</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 40px;
+            color: #333;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            font-family: 'KaiTi', '楷体', serif; /* 修改字体 */
+            font-size: 32px; /* 可根据需要调整字体大小 */
+        }
+
+        .textarea-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            width: 1000px; /* 固定宽度 */
+            margin: 0 auto; /* 居中对齐 */
+        }
+
+        textarea {
+            width: 330px; /* 固定宽度 */
+            height: 430px; /* 固定高度 */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            resize: none; /* 禁止调整大小 */
+            margin: 0 10px; /* 在textarea之间添加间隔 */
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: RGB(237,237,237);
+            color: RGB(106,106,106);
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: background-color 0.3s;
+            font-family: 'American Typewriter', serif;/* 修改按钮字体 */
+        }
+
+        button:hover {
+            background-color: RGB(215,215,215);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .textarea-container {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            textarea {
+                width: 90%;
+                margin: 10px 0; /* 在textarea之间添加间隔 */
+            }
+
+            .btn {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>语法分析器</h1>
+    <form id="runForm">
+        <div class="textarea-container">
+            <textarea id="sampleIn" name="sampleIn" placeholder="请输入需要分析的代码"></textarea>
+            <textarea id="grammarTxt" name="grammarTxt"placeholder="请输入语法"></textarea>
+            <textarea readonly id="output"></textarea>
+        </div>
+    </form>
+    <div class="btn">
+        <button type="button" onclick="runPrograms()">Run</button>
+    </div>
+
+    <script>
+        function decodeUnicode(str) {
+            return str.replace(/\\u[\dA-F]{4}/gi, function (match) {
+                return String.fromCharCode(parseInt(match.slice(2), 16));
+            });
+        }
+
+        async function runPrograms() {
+            const sampleInContent = document.getElementById('sampleIn').value;
+            const grammarTxtContent = document.getElementById('grammarTxt').value;
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:5000/run', true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        var message = response.message;
+                        console.log(message);
+                        document.getElementById('output').textContent = message;
+                    } else {
+                        console.error('请求失败:', xhr.status);
+                        document.getElementById('output').textContent = '请求失败: ' + xhr.status;
+                    }
+                }
+            };
+
+            const data = {
+                sampleIN: sampleInContent,
+                grammarTxt: grammarTxtContent
+            };
+
+            try {
+                xhr.send(JSON.stringify(data));
+            } catch (error) {
+                console.error('发送请求时出错:', error);
+                document.getElementById('output').textContent = '发送请求时出错: ' + error;
+            }
+        }
+    </script>
+</body>
+</html>
