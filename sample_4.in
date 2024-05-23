@@ -1,0 +1,28 @@
+struct node{
+	int son[26];
+	int mark;
+}tire[1000005];
+int num=0;
+void insert(string s){
+	int pos=0;
+	for(int i=0;i<s.length();i++){
+		int temp=s[i]-'a';
+		if(!tire[pos].son[temp])
+		tire[pos].son[temp]=++num;
+		pos=tire[pos].son[temp];
+	}
+	tire[pos].mark++;
+} 
+bool find(string s){
+	int pos=0;
+	for(int i=0;i<s.length();i++){
+		int temp=s[i]-'a';
+		if(!tire[pos].son[temp])
+		return 0;
+		pos=tire[pos].son[temp];
+	}
+	if(tire[pos].mark)
+	return 1;
+	else
+	return 0;
+}

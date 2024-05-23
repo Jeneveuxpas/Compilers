@@ -1,0 +1,4 @@
+string num;
+char _c;
+int i = 1 @ 1;
+cout<<"hello";

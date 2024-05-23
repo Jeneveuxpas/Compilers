@@ -1,0 +1,41 @@
+int main(){
+    double a = 1.5, b      = 1.6E-3;//小数
+    int x = 5, y = 1e9;//整数
+    bool flag;
+    string s = "hello world !";
+    int 11aa;//标识符不能以数字开头
+    float w = 1.;//小数点后没有数字
+    cout << "hello!";
+    x = x % y;
+    x = x | y;
+    x = x & y;
+    x >>= 1;
+    for (register int i = 1; i <= x; i++) {//关键字 for , register
+        if (x != y && x < y)// != && <
+            x^=7;// ^=
+        else if (x > 10)// 关键字 if >
+            break;// 关键字 break
+        else if (x > 5) // 关键字 else if
+            x = x / 10;//除法
+        else x = x * y; //乘法
+    }
+    int i = 0;
+    while (true) {
+        const in tmp = 1005;
+        int c[10005];
+        if (c[0] < tmp)
+            break;
+        else 
+            c[0] += c[i], i++;
+    }
+
+    vector g(n + 1, vector<int>());
+    auto dfs = [&](auto self, int u, int fa) -> void {
+        for (auto v : g[u]) {
+            if (v == fa) continue;
+            self(self, v, u);
+        }
+    };
+    dfs(dfs, 1, 0);
+
+}

@@ -1,0 +1,50 @@
+struct segment_tree{
+    struct tree{
+        int l,r,val,laz;
+    }tr[N<<2];
+    void pushup(int x){
+        tr[x].val=tr[x<<1].val+tr[x<<1|1].val;
+    } 
+    void build(int x,int l,int r){
+        tr[x].l=l,tr[x].r=r,tr[x].laz=0;
+        if(l==r){
+            tr[x].val=a[l];
+            return;
+        }
+        int mid=l+r>>1;
+        build(x<<1,l,mid);
+        build(x<<1|1,mid+1,r);
+        pushup(x);
+    }
+    void mark(int x,int k){
+        tr[x].val+=(tr[x].r-tr[x].l+1)*k;
+        tr[x].laz+=k;
+    }
+    void pushdown(int x){
+        mark(x<<1,tr[x].laz);
+        mark(x<<1|1,tr[x].laz);
+        tr[x].laz=0;
+    }
+    void update(int x,int l,int r,int k){
+        if(tr[x].l>=l&&tr[x].r<=r){
+            mark(x,k);
+            return;
+    }
+        pushdown(x);
+        int mid=(tr[x].l+tr[x].r)>>1;
+        if(mid>=l) update(x<<1,l,r,k);
+        if(mid<r) update(x<<1|1,l,r,k);
+        pushup(x);
+    }
+    int query(int x,int l,int r){
+        if(tr[x].l>=l&&tr[x].r<=r){
+            return tr[x].val;
+        }
+        pushdown(x);
+        int mid=(tr[x].l+tr[x].r)>>1;
+        int ans=0;
+        if(l<=mid) ans=(ans,query(x<<1,l,r));
+        if(mid<r) ans=(ans,query(x<<1|1,l,r));
+        return ans;
+    }
+}tr;

@@ -1,0 +1,15 @@
+<identifier,string>
+<identifier,num>
+<Delimiter,;>
+<Keyword,char>
+<identifier,_c>
+<Delimiter,;>
+<Keyword,int>
+<identifier,i>
+<Operator,=>
+<Number,1>
+Error in Line 3 :@ 1;
+<identifier,cout>
+<Operator,<<>
+<string,"hello">
+<Delimiter,;>

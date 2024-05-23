@@ -1,0 +1,41 @@
+int main ( ) { 
+double a = 1.5 , b = 1.6E-3 ; 
+int x = 5 , y = 1e9 ; 
+bool flag ; 
+string s = ; 
+int ; 
+float w = ; 
+cout << ; 
+x = x % y ; 
+x = x | y ; 
+x = x & y ; 
+x >>= 1 ; 
+for ( register int i = 1 ; i <= x ; i ++ ) { 
+if ( x != y && x < y ) 
+x ^= 7 ; 
+else if ( x > 10 ) 
+break ; 
+else if ( x > 5 ) 
+x = x / 10 ; 
+else x = x * y ; 
+} 
+int i = 0 ; 
+while ( true ) { 
+const in tmp = 1005 ; 
+int c [ 10005 ] ; 
+if ( c [ 0 ] < tmp ) 
+break ; 
+else 
+c [ 0 ] += c [ i ] , i ++ ; 
+} 
+
+vector g ( n + 1 , vector < int > ( ) ) ; 
+auto dfs = [ & ] ( auto self , int u , int fa ) -> void { 
+for ( auto v : g [ u ] ) { 
+if ( v == fa ) continue ; 
+self ( self , v , u ) ; 
+} 
+} ; 
+dfs ( dfs , 1 , 0 ) ; 
+
+} 

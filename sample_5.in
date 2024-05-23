@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int maxn=300010;
+const int N=26;
+struct palindromeAutomata{
+    int fail[maxn];//fail指针，失配后跳转到fail指针指向的节点
+    int trie[maxn][N];
+    int cnt[maxn];//表示以节点i结尾的最长的本质不同的串的个数（建树时求出的不是完全的，最后count()函数跑一遍以后是整个串的）
+    int num[maxn];//表示以节点i表示的最长回文串的最右端点为回文串结尾的回文串个数。
+    int len[maxn];//节点i表示的回文串的长度
+    int S[maxn];//存放添加的字符
+    int last,p,n;
+    int newnode(int l){//新建节点
+        for(int i=0;i<N;++i){
+            trie[p][i]=0;
+        }
+        cnt[p]=num[p]=0;
+        len[p]=l;
+        return p++;
+    }
+    void init(){//初始化
+        p=0;
+        newnode(0);
+        newnode(-1);
+        last=0;
+        n=0;
+        S[n]=-1;
+        fail[0]=1;
+    }
+    int getFail(int x){//找fail指针
+        while(S[n-len[x]-1]!=S[n]) x=fail[x];
+        return x;
+    }
+    void addWord(char c){
+        c-='a';
+        S[++n]=c;
+        int cur=getFail(last);//找到可以和新建节点连接的cur节点
+        if (!trie[cur][c]){//如果这个回文串没有出现过，说明出现了一个新的本质不同的回文串
+            int now=newnode(len[cur]+2);
+            fail[now]=trie[getFail(fail[cur])][c];//再父节点上找fail指针
+            trie[cur][c]=now;//先找fail再连接防止连接到自身
+            num[now]=num[fail[now]]+1;
+        }
+        last=trie[cur][c];
+        cnt[last]++;
+    }
+    void Count(){//统计本质相同的回文串的出现次数
+        for(int i=p-1;i>=0;--i){//逆序累加，保证每个点都会比它的父亲节点先算完，于是父亲节点能加到所有子孙
+            cnt[fail[i]]+=cnt[i];
+        }
+    }
+}Run;
+char s[300010];
+int main(){
+    scanf("%s",&s);
+    Run.init();
+    for(int i=0;s[i];++i){
+        Run.addWord(s[i]);
+    }
+    Run.Count();
+}
