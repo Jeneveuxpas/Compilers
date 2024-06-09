@@ -1,0 +1,23 @@
+Follow:
+):; 
+L:!= && ) * + - / ; < <= = == > >= ] || 
+M:$ ( 3 4 do i if j while { } 
+N:else 
+bool:&& ) || 
+decl:$ do float i if int j while { 
+decls:$ do float i if int j while { 
+expr:!= && ) + - ; < <= == > >= ] || 
+expr;:$ do else i if j while { } 
+factor:!= && ) * + - / ; < <= == > >= ] || 
+id:!= && ) * + - / ; < <= = == > >= [ ] || 
+if:( 
+num:!= && ) * + - / ; < <= == > >= ] || 
+program:$ 
+rel:( 3 4 i j 
+stmt:$ do else i if j while { } 
+stmts:$ } 
+stmts':$ } 
+term:!= && ) * + - / ; < <= == > >= ] || 
+type:i j 
+while:( 
+{:} 

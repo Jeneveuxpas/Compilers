@@ -1,0 +1,75 @@
+program \-> decls stmts
+decls \-> decls decl \| epsilon
+
+decl \-> type id ; \{ symtab.put ( id.lexeme , type ) \; \}
+
+type \-> int \{ type = int \;\} \| float \{ type = float \;\}
+
+stmts \-> stmts' \{stmts.nextlist = stmts'.nextlist}
+
+stmts' \-> stmt M stmts \{ backpatch ( stmt.nextlist , M.instr ) \; stmts'.nextlist = stmts.nextlist \; \}
+
+stmts' \-> epsilon 
+
+stmt \-> id = expr ; \{ gen ( id.lexeme +  =  + expr.addr + ; ) \; \}
+
+stmt \-> L = expr; \{ gen ( L.array.base [ L.addr ] = E.addr) \; \}
+
+
+stmt \-> { stmts }
+
+stmt \-> if ( bool ) M stmt \{ backpatch ( bool.truelist , M.instr ) \; stmt.nextlist = merge(bool.falselist,stmt1.nextlist) \; \}
+
+stmt \-> if ( bool ) M stmt N else M stmt \{ backpatch ( bool.truelist , M1.instr ) \; backpatch ( bool.falselist , M2.instr ) \; backpatch ( N.nextlist , stmt2.nextstr ) \; stmt.nextlist = stmt2.nextlist \; \}
+
+stmt \-> while M ( bool ) M stmt \{ backpatch ( stmt1.truelist, M1.instr ) \; backpatch ( bool.truelist , M2.instr ) \; stmt'.nextlist = bool.falselist \; gen ( goto  M1.instr ) \; \}
+
+
+stmt  \-> do M stmt while M ( bool ) ;	\{ backpatch ( stmt1.truelist , M2.instr ) \; backpatch ( bool.truelist , M3.instr ) \; stmt.nextlist = bool.falselist \; \}
+
+M \-> epsilon \{ M.instr = nextinstr \; \}
+
+N \-> epsilon \{ N.nextlist = nextinstr \; gen ( goto ) \; \}
+
+
+
+bool \-> expr rel expr \{  bool.truelist = nextinstr \; bool.falselist = nextinstr+1 \; gen ( if expr1.addr rel.op expr2.addr goto ) \; gen ( goto ) \; \} 
+
+bool \-> bool || M bool \{ backpatch ( bool1.falselist , M.instr) \; bool.truelist = merge(bool1.truelist,bool2.truelist) \; bool.falselist = bool2.falselist \; }
+
+bool \-> bool && M bool \{backpatch ( bool1.truelist , M.instr ) \; bool.truelist = bool2.truelist \; bool.falselist = merge(bool1.falselist,bool2.falselist) \; \}
+
+
+
+bool \->  ( bool ) \{ bool.truelist = bool3.truelist \; bool.falselist = bool3.falselist \; \}
+
+rel  \-> <  \{rel.op = <  \; \}
+rel  \-> >  \{rel.op = >  \; \}
+rel  \-> == \{rel.op = == \; \}
+rel  \-> != \{rel.op = != \; \}
+rel  \-> <= \{rel.op = <= \; \}
+rel  \-> >= \{rel.op = >= \; \}
+
+
+expr \-> expr + term \{ addr = newTemp() \; gen ( addr +  =  + expr1.addr +  +  + term.addr + ; ) \; \} 
+expr \-> expr - term \{ addr = newTemp() \; gen ( addr +  =  + expr1.addr +  -  + term.addr + ; ) \; \} 
+expr \-> term \{ addr = term.addr \; \}
+
+
+term \-> L \{ addr = newTemp() \; gen ( E.addr = L.lexeme [ L.addr ] ) \; \}
+
+L \-> id [ expr ] \{ addr = id.lexem \;  addr = newTemp() \; gen ( L.addr = E.addr * L.type.width ) \;  \}
+
+
+
+
+
+
+term \-> term * factor \{ addr = newTemp() \; gen ( addr +  = + term1.addr +  *  + factor.addr + ; ) \; \}
+term \-> term / factor \{ addr = newTemp() \; gen ( addr +  = + term1.addr +  /  + factor.addr + ; ) \; \} 
+term \-> factor \{ addr = factor.addr \; \}
+
+factor \-> ( expr ) \{ addr = expr.addr \; \} 
+factor \-> id \{ addr = id.lexeme \; \}  
+factor \-> num \{ addr = num.value \; \}
+

@@ -1,0 +1,36 @@
+First:
+!=:!= 
+(:( 
+3:3 
+4:4 
+<:< 
+<=:<= 
+==:== 
+>:> 
+>=:>= 
+L:i j 
+M:epsilon 
+N:epsilon 
+bool:( 3 4 i j 
+decl:float int 
+decls:epsilon 
+do:do 
+epsilon:epsilon 
+expr:( 3 4 i j 
+factor:( 3 4 i j 
+float:float 
+i:i 
+id:i j 
+if:if 
+int:int 
+j:j 
+num:3 4 
+program:do epsilon i if j while { 
+rel:!= < <= == > >= 
+stmt:do i if j while { 
+stmts:do epsilon i if j while { 
+stmts':do epsilon i if j while { 
+term:( 3 4 i j 
+type:float int 
+while:while 
+{:{ 

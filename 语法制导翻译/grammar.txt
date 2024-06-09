@@ -1,0 +1,30 @@
+program  \->  basic id ( decl' ) block program'
+program' \-> basic id ( decl' ) block  \| epsilon
+decl' \->  epsilon \| type id next
+block    \-> { decls stmts }
+decls    \-> decls'
+decls'   \-> decl decls' \| epsilon
+decl     \-> type id next ;
+next     \->  epsilon \| = expr next \| , id next \| [ num ] next
+type     \->  float \| int \| double \| char \| __int128 \| long long \| bool \| string
+basic    \-> float \| int \| double \| char \| __int128 \| long long \| bool \| void \| string
+stmts    \-> stmts'
+stmts'   \-> stmt stmts' \| epsilon
+stmt     \-> loc = expr ; \| if ( bool' ) stmt \| if ( bool' ) stmt else stmt \| while ( bool' ) stmt \| do stmt while ( bool' ) ; \| break ; \| block \| return  expr'' ; 
+loc      \-> loc'' id loc' 
+loc''   \-> epsilon \| type 
+expr''   \-> expr \|  epsilon
+loc'     \-> [ num ] loc' \| epsilon \| [ id ] loc'
+bool'     \->  join bool'''
+bool'''    \-> || join bool''' \| epsilon
+join     \-> equality join'
+join'    \-> && equality join' \| epsilon
+equality \-> rel equality'
+equality' \-> == rel equality' \| != rel equality' \| epsilon
+rel      \-> expr < expr \| expr <= expr \| expr >= expr \| expr > expr \| expr
+expr     \-> term expr'
+expr'    \-> + term expr' \| - term expr' \| epsilon
+term     \-> unary term'
+term'    \-> * unary term' \| / unary term' \| epsilon
+unary    \-> ! unary \| - unary \| factor
+factor   \-> ( expr ) \| loc \| id \| num \| real \| true \| false \| string' \| id [ id ] \| id [ num ]

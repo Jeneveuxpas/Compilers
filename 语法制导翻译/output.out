@@ -1,0 +1,17 @@
+<Keyword,int>
+<identifier,i>
+<Delimiter,;>
+<Keyword,int>
+<identifier,j>
+<Delimiter,;>
+<identifier,i>
+<Operator,=>
+<Number,4>
+<Delimiter,;>
+<Delimiter,;>
+<identifier,j>
+<Operator,=>
+<identifier,i>
+<Operator,/>
+<Number,3>
+<Delimiter,;>

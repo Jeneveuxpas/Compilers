@@ -1,0 +1,28 @@
+$ 	归约/decls->epsilon 
+$ decls 	移入
+$ decls int 	归约/type->int 
+$ decls type 	移入
+$ decls type i 	归约/id->i 
+$ decls type id 	移入
+$ decls type id ; 	归约/decl->type id ; 
+$ decls decl 	归约/decls->decls decl 
+$ decls 	移入
+$ decls int 	归约/type->int 
+$ decls type 	移入
+$ decls type j 	归约/id->j 
+$ decls type id 	移入
+$ decls type id ; 	归约/decl->type id ; 
+$ decls decl 	归约/decls->decls decl 
+$ decls 	移入
+$ decls i 	归约/id->i 
+$ decls id 	移入
+$ decls id = 	移入
+$ decls id = 4 	归约/num->4 
+$ decls id = num 	归约/factor->num 
+$ decls id = factor 	归约/term->factor 
+$ decls id = term 	归约/expr->term 
+$ decls id = expr 	移入
+Error in Line : 3
+invalid syntax in expression
+i = 4;;
+       
